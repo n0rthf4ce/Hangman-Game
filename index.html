@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pokemon Hangman</title>
+
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+        crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <div class="jumbotron">
+        <h1 class="text-center">Pokemon Hangman</h1>
+        <h2 class="text-center">Press any key to start!</h2>
+    </div>
+
+    <div class="container">
+
+        <div id="answer"></div>
+        <div id="guesses-left"></div>
+        <div id="already-guessed"></div>
+    </div>
+    <script type="text/javascript">
+        var hangmanGame = {
+            wordVault: ["squirtle", "bulbasaur", "charmander", "pikachu"],
+            playGame: function () {
+
+            },
+            guessLetter: function(){
+
+            },
+
+        }
+        console.log(hangmanGame.wordVault[1]);
+
+    </script>
+
+</body>
+
+</html>
