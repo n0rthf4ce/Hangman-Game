@@ -27,16 +27,42 @@
     <script type="text/javascript">
         var hangmanGame = {
             wordVault: ["squirtle", "bulbasaur", "charmander", "pikachu"],
-            playGame: function () {
-
+            guesses: 12,
+            characters: [],
+            unpopulated: [],
+            selectWord: function () {
+                var j = Math.floor(Math.random() * this.wordVault.length);
+                this.characters = this.wordVault[j].split("");
+                this.unpopulated.length=this.characters.length;
+                for (let i = 0; i<this.unpopulated.length; i++) {
+                    this.unpopulated[i] = "_";
+                }
+                return this.wordVault[j];
             },
-            guessLetter: function(){
-
-            },
+            guessLetter: function (letter) {
+                for (let i = 0; i<this.characters.length; i++) {
+                    if(letter==this.characters[i]){
+                        this.unpopulated[i]=letter;
+                    }
+                }
+                this.guesses--;
+            }
 
         }
-        console.log(hangmanGame.wordVault[1]);
-
+        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
+        hangmanGame.guessLetter("a");
+        hangmanGame.guessLetter("s");
+        console.log("after guesses",hangmanGame.unpopulated);
+        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
+        hangmanGame.guessLetter("a");
+        hangmanGame.guessLetter("s");
+        console.log("after guesses",hangmanGame.unpopulated);
+        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
+        hangmanGame.guessLetter("a");
+        hangmanGame.guessLetter("s");
+        console.log("after guesses",hangmanGame.unpopulated);
+        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
+        console.log("after guesses",hangmanGame.unpopulated);
     </script>
 
 </body>
