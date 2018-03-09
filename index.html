@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Pokemon Hangman</title>
 
-    <!-- Added a link to Bootstrap-->
+    <link href="https://fonts.googleapis.com/css?family=Mina:700|Rammetto+One" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css">
@@ -15,19 +15,21 @@
 <body>
 
     <div class="jumbotron">
-        <h1 class="text-center">Pokemon Hangman</h1>
-        <h3 class="text-center">Press "enter" to start!</h3>
+        <img id="heading" class="img-fluid text-center" src="assets/images/Logo.png" alt="Pokemon Hangman">
+        <h4 id="game-instructions" class="text-center text-info">Press "enter" to start!</h4>
+        <div class="text-center" id="won-or-lost"></div>
+        
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center">
-                <h4 class="text-primary">Who's that Pokemon??</h4>
+                <h3 class="text-primary">Who's that Pokemon??</h3>
                 <div id="unpopulated"><h2></h2></div>
-                <h5 class="text-primary">Number of Guesses Left:</h5>
+                <h4 class="text-primary">Number of Guesses Left:</h4>
                 <div id="guesses"></div>
+                <h4 class="text-primary">Letters You've Already Guessed:</h4>
                 <div id="guessedLetters"></div>
-                <div id="won-or-lost"></div>
             </div>
             <div class="col-md-6" id="picture"></div>
         </div>

@@ -1,6 +1,38 @@
+*{
+    font-family: 'Mina', sans-serif;
+    word-spacing: .05em;
+}
+body{
+    background-image:  url("../images/background.jpg");
+}
 p{
     font-size: 15px;  
 }
 h2{
     margin-bottom: 60px;
 }
+img{
+    max-width: 100%;
+    display: flex;
+    margin: auto;
+}
+.jumbotron{
+    background: rgb(255, 255, 186);
+    opacity: .75;
+    padding-top: 10px;
+}
+#won-or-lost{
+    font-family: 'Rammetto One', cursive;
+    font-weight: 600;
+    color: blue;
+}
+#loss-text{
+    color: red;
+}
+#heading{
+    max-width: 40%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
