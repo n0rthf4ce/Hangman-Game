@@ -8,6 +8,7 @@
     <!-- Added a link to Bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
         crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css">
 
 </head>
 
@@ -15,54 +16,23 @@
 
     <div class="jumbotron">
         <h1 class="text-center">Pokemon Hangman</h1>
-        <h2 class="text-center">Press any key to start!</h2>
+        <h3 class="text-center">Press "enter" to start!</h3>
     </div>
 
     <div class="container">
-
-        <div id="answer"></div>
-        <div id="guesses-left"></div>
-        <div id="already-guessed"></div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h4 class="text-primary">Who's that Pokemon??</h4>
+                <div id="unpopulated"><h2></h2></div>
+                <h5 class="text-primary">Number of Guesses Left:</h5>
+                <div id="guesses"></div>
+                <div id="guessedLetters"></div>
+                <div id="won-or-lost"></div>
+            </div>
+            <div class="col-md-6" id="picture"></div>
+        </div>
     </div>
-    <script type="text/javascript">
-        var hangmanGame = {
-            wordVault: ["squirtle", "bulbasaur", "charmander", "pikachu"],
-            guesses: 12,
-            characters: [],
-            unpopulated: [],
-            selectWord: function () {
-                var j = Math.floor(Math.random() * this.wordVault.length);
-                this.characters = this.wordVault[j].split("");
-                this.unpopulated.length=this.characters.length;
-                for (let i = 0; i<this.unpopulated.length; i++) {
-                    this.unpopulated[i] = "_";
-                }
-                return this.wordVault[j];
-            },
-            guessLetter: function (letter) {
-                for (let i = 0; i<this.characters.length; i++) {
-                    if(letter==this.characters[i]){
-                        this.unpopulated[i]=letter;
-                    }
-                }
-                this.guesses--;
-            }
-
-        }
-        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
-        hangmanGame.guessLetter("a");
-        hangmanGame.guessLetter("s");
-        console.log("after guesses",hangmanGame.unpopulated);
-        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
-        hangmanGame.guessLetter("a");
-        hangmanGame.guessLetter("s");
-        console.log("after guesses",hangmanGame.unpopulated);
-        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
-        hangmanGame.guessLetter("a");
-        hangmanGame.guessLetter("s");
-        console.log("after guesses",hangmanGame.unpopulated);
-        console.log(hangmanGame.selectWord(),hangmanGame.characters,hangmanGame.unpopulated);
-        console.log("after guesses",hangmanGame.unpopulated);
+    <script type="text/javascript" src="assets/javascript/game.js">
     </script>
 
 </body>
