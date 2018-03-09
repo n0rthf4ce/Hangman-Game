@@ -652,15 +652,16 @@ var hangmanGame = {
     }
 
 }
+var theAnswer,audio;
 document.onkeyup = function (event) {
-    var action = event.key, audio;
+    var action = event.key;
     console.log(action);
     switch (action) {
 
         case "Enter": audio = new Audio("assets/sounds/whos_that_pokemon.mp3");
             audio.play();
             //when user presses Enter, a new game is started and a new word is selected
-            hangmanGame.selectWord();
+            theAnswer = hangmanGame.selectWord().toUpperCase();
             document.getElementById("game-instructions").textContent = 'Press letters a-z to guess a letter. Press "enter" to start a new game.';
             console.log(hangmanGame.characters);
             //displays the new attributes of the game
@@ -701,7 +702,7 @@ document.onkeyup = function (event) {
             }
             //next we check if user has lost and run out of guesses. if so, we display relevant message and change relevant attributes
             if (hangmanGame.gameLost()) {
-                document.getElementById("won-or-lost").innerHTML = "<h3 id='loss-text'> You Lost </h3>";
+                document.getElementById("won-or-lost").innerHTML = "<h3 id='loss-text'> You Lost, the answer was " + theAnswer + "</h3>";
             }
             break;
     }
