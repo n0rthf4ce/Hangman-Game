@@ -1,25 +1,33 @@
 *{
     font-family: 'Mina', sans-serif;
-    word-spacing: .05em;
 }
 body{
     background-image:  url("../images/background.jpg");
+}
+img{
+    display:flex;
+    margin:auto;
 }
 p{
     font-size: 15px;  
 }
 h2{
-    margin-bottom: 60px;
+    margin-bottom: 30px;
 }
-img{
-    max-width: 100%;
-    display: flex;
-    margin: auto;
+h4{
+    font-size: 1.1rem;
+}
+.pokemon-image{
+    max-width:90%;
 }
 .jumbotron{
     background: rgb(255, 255, 186);
     opacity: .75;
     padding-top: 10px;
+    padding-bottom: 1rem;
+}
+.spaceholder{
+    visibility: hidden;
 }
 #won-or-lost{
     font-family: 'Rammetto One', cursive;
@@ -29,10 +37,3 @@ img{
 #loss-text{
     color: red;
 }
-#heading{
-    max-width: 40%;
-    height: auto;
-    display: block;
-    margin: auto;
-}
-
