@@ -6,10 +6,11 @@ body{
 }
 img{
     display:flex;
-    margin:auto;
+    margin:auto;    
 }
 p{
-    font-size: 15px;  
+    font-size: 17px;
+    font-weight: 800; 
 }
 h2{
     margin-bottom: 30px;
@@ -18,16 +19,20 @@ h4{
     font-size: 1.1rem;
 }
 .pokemon-image{
-    max-width:90%;
+    max-height: 360px;
 }
 .jumbotron{
     background: rgb(255, 255, 186);
     opacity: .75;
     padding-top: 10px;
     padding-bottom: 1rem;
+    margin-bottom: 0;
 }
 .spaceholder{
     visibility: hidden;
+}
+#left-side{
+    padding-top:15px;
 }
 #won-or-lost{
     font-family: 'Rammetto One', cursive;
@@ -35,5 +40,11 @@ h4{
     color: blue;
 }
 #loss-text{
+    color: red;
+}
+#logo{
+    max-height:260px;
+}
+#guessedLetters{
     color: red;
 }

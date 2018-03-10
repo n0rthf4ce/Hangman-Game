@@ -623,7 +623,6 @@ var hangmanGame = {
         for (let i = 0; i < this.unpopulated.length; i++) {
             this.unpopulated[i] = "_";
         }
-        return this.wordVault[j].name;
     },
 
     //runs a guessed letter through the game and changes all necessary parameters
@@ -688,7 +687,7 @@ var hangmanGame = {
     //runs the game
     runGame: function (action) {
         hangmanGame.changeDifficulty();
-        var theAnswer, audio;
+        var audio;
         console.log(action);
         switch (action) {
 
@@ -696,7 +695,7 @@ var hangmanGame = {
                 hangmanGame.initialized=true;
                 audio.play();
                 //when user presses Enter, a new game is started and a new word is selected
-                theAnswer = hangmanGame.selectWord().toUpperCase();
+                hangmanGame.selectWord();
                 document.getElementById("game-instructions").textContent = 'Press letters a-z to guess a letter. Press "enter" to start a new game.';
                 console.log(hangmanGame.characters);
                 //displays the new attributes of the game
@@ -727,7 +726,7 @@ var hangmanGame = {
                     document.getElementById("unpopulated").innerHTML = "<h2>" + hangmanGame.unpopulated.join(" ") + "</h2>";
                     document.getElementById("guesses").innerHTML = "<p>" + hangmanGame.guesses + "</p>";
                     if (hangmanGame.guessedLetters.length >= 1) {
-                        document.getElementById("guessedLetters").innerHTML = "<p>" + hangmanGame.guessedLetters.join(" ") + "</p>";
+                        document.getElementById("guessedLetters").innerHTML = "<p id='guessedLetters'>" + hangmanGame.guessedLetters.join(" ") + "</p>";
                     }
                     console.log(hangmanGame.unpopulated, hangmanGame.characters, hangmanGame.gameWon());
                     //after guessing the letter, we want to check if the user has won, if so, we need to display relevant messages and change relevant attributes
@@ -740,7 +739,7 @@ var hangmanGame = {
                     }
                     //next we check if user has lost and run out of guesses. if so, we display relevant message and change relevant attributes
                     if (hangmanGame.gameLost()) {
-                        document.getElementById("won-or-lost").innerHTML = "<h3 id='loss-text'> You Lost, the answer was " + theAnswer + "</h3>";
+                        document.getElementById("won-or-lost").innerHTML = "<h3 id='loss-text'> You Lost, the answer was " + hangmanGame.characters.join("").toUpperCase() + "</h3>";
                     }
                     break;
                 }
