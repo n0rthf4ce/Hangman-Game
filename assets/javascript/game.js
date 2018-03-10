@@ -649,61 +649,65 @@ var hangmanGame = {
             return true;
         }
         return false;
+    },
+    runGame: function () {
+
+        var theAnswer, audio;
+        document.onkeyup = function (event) {
+            var action = event.key;
+            console.log(action);
+            switch (action) {
+
+                case "Enter": audio = new Audio("assets/sounds/whos_that_pokemon.mp3");
+                    audio.play();
+                    //when user presses Enter, a new game is started and a new word is selected
+                    theAnswer = hangmanGame.selectWord().toUpperCase();
+                    document.getElementById("game-instructions").textContent = 'Press letters a-z to guess a letter. Press "enter" to start a new game.';
+                    console.log(hangmanGame.characters);
+                    //displays the new attributes of the game
+                    document.getElementById("unpopulated").innerHTML = "<h2>" + hangmanGame.unpopulated.join(" ") + "</h2>";
+                    document.getElementById("guesses").innerHTML = "<p>" + hangmanGame.guesses + "</p>";
+                    document.getElementById("guessedLetters").innerHTML = "<p>" + hangmanGame.guessedLetters.join(" ") + "</p>";
+                    //resets all other html attributes
+                    document.getElementById("won-or-lost").innerHTML = "<p></p>";
+                    document.getElementById("picture").innerHTML = "";
+                    document.getElementById("unpopulated").setAttribute("class", "")
+                    break;
+
+                //when user presses a-z, the we want to find if that character is in the word
+                case String(action.match(/[a-z]+/g)):
+                    //first we check if the game is over (won or lost). if it is, we proceed no further and display a message for the user to continue to a new game
+                    if (hangmanGame.gameWon()) {
+                        document.getElementById("won-or-lost").innerHTML = '<h4 class="text-danger"> You won, press "enter" to start a new game. </h4>';
+                        break;
+                    }
+                    if (hangmanGame.gameLost()) {
+                        document.getElementById("won-or-lost").innerHTML = '<h4 class="text-danger"> You lost, press "enter" to start a new game. </h4>';
+                        break;
+                    }
+                    //then we execute the method guessLetter to initialize procedures to fill in that letter if it exists in the word
+                    hangmanGame.guessLetter(action);
+                    //displays updated attributes of the game
+                    document.getElementById("unpopulated").innerHTML = "<h2>" + hangmanGame.unpopulated.join(" ") + "</h2>";
+                    document.getElementById("guesses").innerHTML = "<p>" + hangmanGame.guesses + "</p>";
+                    document.getElementById("guessedLetters").innerHTML = "<p>" + hangmanGame.guessedLetters.join(" ") + "</p>";
+                    console.log(hangmanGame.unpopulated, hangmanGame.characters, hangmanGame.gameWon());
+                    //after guessing the letter, we want to check if the user has won, if so, we need to display relevant messages and change relevant attributes
+                    if (hangmanGame.gameWon()) {
+                        document.getElementById("won-or-lost").innerHTML = "<h1> YOU WON!! </h1>";
+                        audio = new Audio("assets/sounds/victory.wav");
+                        audio.play();
+                        document.getElementById("picture").innerHTML = "<img class='img-fluid' src=" + hangmanGame.picture + ">";
+                        document.getElementById("unpopulated").setAttribute("class", "text-success text-uppercase")
+                    }
+                    //next we check if user has lost and run out of guesses. if so, we display relevant message and change relevant attributes
+                    if (hangmanGame.gameLost()) {
+                        document.getElementById("won-or-lost").innerHTML = "<h3 id='loss-text'> You Lost, the answer was " + theAnswer + "</h3>";
+                    }
+                    break;
+            }
+        }
+
     }
-
 }
-var theAnswer,audio;
-document.onkeyup = function (event) {
-    var action = event.key;
-    console.log(action);
-    switch (action) {
-
-        case "Enter": audio = new Audio("assets/sounds/whos_that_pokemon.mp3");
-            audio.play();
-            //when user presses Enter, a new game is started and a new word is selected
-            theAnswer = hangmanGame.selectWord().toUpperCase();
-            document.getElementById("game-instructions").textContent = 'Press letters a-z to guess a letter. Press "enter" to start a new game.';
-            console.log(hangmanGame.characters);
-            //displays the new attributes of the game
-            document.getElementById("unpopulated").innerHTML = "<h2>" + hangmanGame.unpopulated.join(" ") + "</h2>";
-            document.getElementById("guesses").innerHTML = "<p>" + hangmanGame.guesses + "</p>";
-            document.getElementById("guessedLetters").innerHTML = "<p>" + hangmanGame.guessedLetters.join(" ") + "</p>";
-            //resets all other html attributes
-            document.getElementById("won-or-lost").innerHTML = "<p></p>";
-            document.getElementById("picture").innerHTML = "";
-            document.getElementById("unpopulated").setAttribute("class", "")
-            break;
-
-        //when user presses a-z, the we want to find if that character is in the word
-        case String(action.match(/[a-z]+/g)):
-            //first we check if the game is over (won or lost). if it is, we proceed no further and display a message for the user to continue to a new game
-            if (hangmanGame.gameWon()) {
-                document.getElementById("won-or-lost").innerHTML = '<h4 class="text-danger"> You won, press "enter" to start a new game. </h4>';
-                break;
-            }
-            if (hangmanGame.gameLost()) {
-                document.getElementById("won-or-lost").innerHTML = '<h4 class="text-danger"> You lost, press "enter" to start a new game. </h4>';
-                break;
-            }
-            //then we execute the method guessLetter to initialize procedures to fill in that letter if it exists in the word
-            hangmanGame.guessLetter(action);
-            //displays updated attributes of the game
-            document.getElementById("unpopulated").innerHTML = "<h2>" + hangmanGame.unpopulated.join(" ") + "</h2>";
-            document.getElementById("guesses").innerHTML = "<p>" + hangmanGame.guesses + "</p>";
-            document.getElementById("guessedLetters").innerHTML = "<p>" + hangmanGame.guessedLetters.join(" ") + "</p>";
-            console.log(hangmanGame.unpopulated, hangmanGame.characters, hangmanGame.gameWon());
-            //after guessing the letter, we want to check if the user has won, if so, we need to display relevant messages and change relevant attributes
-            if (hangmanGame.gameWon()) {
-                document.getElementById("won-or-lost").innerHTML = "<h1> YOU WON!! </h1>";
-                audio = new Audio("assets/sounds/victory.wav");
-                audio.play();
-                document.getElementById("picture").innerHTML = "<img class='img-fluid' src=" + hangmanGame.picture + ">";
-                document.getElementById("unpopulated").setAttribute("class", "text-success text-uppercase")
-            }
-            //next we check if user has lost and run out of guesses. if so, we display relevant message and change relevant attributes
-            if (hangmanGame.gameLost()) {
-                document.getElementById("won-or-lost").innerHTML = "<h3 id='loss-text'> You Lost, the answer was " + theAnswer + "</h3>";
-            }
-            break;
-    }
-}
+hangmanGame.runGame();
