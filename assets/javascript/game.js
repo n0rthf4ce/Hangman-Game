@@ -695,7 +695,6 @@ var hangmanGame = {
 
     //runs the game
     runGame: function (action) {
-        hangmanGame.changeDifficulty();
         var audio;
         console.log(action);
         switch (action) {
@@ -756,7 +755,7 @@ var hangmanGame = {
     }
 
 }
-
+hangmanGame.changeDifficulty();
 document.onkeyup = function (event) {
     hangmanGame.runGame(event.key);
 }
