@@ -617,8 +617,7 @@ var hangmanGame = {
             case "medium": this.guesses = 9; break;
             case "hard": this.guesses = 5; break;
         }
-        console.log(this.guesses);
-        console.log(this.difficulty);
+        console.log("difficulty:",this.difficulty);
         this.picture = this.wordVault[j].picture;
         for (let i = 0; i < this.unpopulated.length; i++) {
             this.unpopulated[i] = "_";
@@ -660,17 +659,17 @@ var hangmanGame = {
 
         easy.onclick = function () {
             hangmanGame.difficulty = "easy";
-            console.log(hangmanGame.difficulty);
+            console.log("difficulty:",hangmanGame.difficulty);
         }
 
         medium.onclick = function () {
             hangmanGame.difficulty = "medium";
-            console.log(hangmanGame.difficulty);
+            console.log("difficulty:",hangmanGame.difficulty);
         }
 
         hard.onclick = function () {
             hangmanGame.difficulty = "hard";
-            console.log(hangmanGame.difficulty);
+            console.log("difficulty:",hangmanGame.difficulty);
         }
 
     },
@@ -696,7 +695,7 @@ var hangmanGame = {
     //runs the game
     runGame: function (action) {
         var audio;
-        console.log(action);
+        console.log("action:",action);
         switch (action) {
 
             case "Enter": audio = new Audio("assets/sounds/whos_that_pokemon.mp3");
@@ -705,7 +704,7 @@ var hangmanGame = {
                 //when user presses Enter, a new game is started and a new word is selected
                 hangmanGame.selectWord();
                 document.getElementById("game-instructions").textContent = 'Press letters "a-z" to guess a letter. Press "enter" to start a new game.';
-                console.log(hangmanGame.characters);
+                console.log("characters:",hangmanGame.characters);
                 //displays the new attributes of the game
                 document.getElementById("unpopulated").innerHTML = "<h2>" + hangmanGame.unpopulated.join(" ") + "</h2>";
                 document.getElementById("guesses").innerHTML = "<p>" + hangmanGame.guesses + "</p>";
@@ -736,7 +735,7 @@ var hangmanGame = {
                     if (hangmanGame.guessedLetters.length >= 1) {
                         document.getElementById("guessedLetters").innerHTML = "<p id='guessedLetters'>" + hangmanGame.guessedLetters.join(" ") + "</p>";
                     }
-                    console.log(hangmanGame.unpopulated, hangmanGame.characters, hangmanGame.gameWon());
+                    console.log("unpopulated:",hangmanGame.unpopulated, "characters:",hangmanGame.characters, "gameWon:",hangmanGame.gameWon());
                     //after guessing the letter, we want to check if the user has won, if so, we need to display relevant messages and change relevant attributes
                     if (hangmanGame.gameWon()) {
                         document.getElementById("won-or-lost").innerHTML = "<h1> YOU WON!! </h1>";
