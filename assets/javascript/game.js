@@ -627,8 +627,11 @@ var hangmanGame = {
 
     //runs a guessed letter through the game and changes all necessary parameters
     guessLetter: function (letter) {
-        var inWord = false, inTrash = false;
+        var audio, inWord = false, inTrash = false, repeat=false;
         for (let i = 0; i < this.characters.length; i++) {
+            if(letter==this.unpopulated[i]&&letter==this.characters[i]){
+                repeat=true;
+            }
             if (letter == this.characters[i]) {
                 this.unpopulated[i] = letter;
                 inWord = true;
@@ -639,7 +642,13 @@ var hangmanGame = {
                 inTrash = true;
             }
         }
+        if(!repeat && inWord && this.unpopulated.includes("_")){
+            audio = new Audio("assets/sounds/Ding.mp3");
+            audio.play();
+        }
         if (!inWord && !inTrash) {
+            audio = new Audio("assets/sounds/Buzzer.mp3");
+            audio.play();
             this.guessedLetters.push(letter);
             this.guesses--;
         }
@@ -696,7 +705,7 @@ var hangmanGame = {
                 audio.play();
                 //when user presses Enter, a new game is started and a new word is selected
                 hangmanGame.selectWord();
-                document.getElementById("game-instructions").textContent = 'Press letters a-z to guess a letter. Press "enter" to start a new game.';
+                document.getElementById("game-instructions").textContent = 'Press letters "a-z" to guess a letter. Press "enter" to start a new game.';
                 console.log(hangmanGame.characters);
                 //displays the new attributes of the game
                 document.getElementById("unpopulated").innerHTML = "<h2>" + hangmanGame.unpopulated.join(" ") + "</h2>";
