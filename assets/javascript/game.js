@@ -716,7 +716,7 @@ var hangmanGame = {
                 break;
 
             //when user presses a-z, the we want to find if that character is in the word
-            case String(action.match(/[.a-zA-Z]/g)):
+            case String(action.match(/[a-zA-Z]/g)):
                 action = action.toLowerCase();
                 if (hangmanGame.initialized) {
                     //first we check if the game is over (won or lost). if it is, we proceed no further and display a message for the user to continue to a new game
